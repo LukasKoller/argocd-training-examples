@@ -5,7 +5,7 @@ metadata:
   name: simple-example
 spec:
   rules:
-    - host: simple-example-default.localhost:8080
+    - host: simple-example-default.localhost
       http:
         paths:
           - path: /
