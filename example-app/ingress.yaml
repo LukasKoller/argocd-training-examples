@@ -1,0 +1,17 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simple-example
+spec:
+  rules:
+    - host: simple-example-default.localhost:8080
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service: 
+                name: simple-example
+                port: 
+                  number: 5000
