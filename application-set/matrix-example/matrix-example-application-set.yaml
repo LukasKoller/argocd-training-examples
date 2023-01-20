@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: application-set-matrix-lkoller
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+              - cluster: dev
+                url: https://kubernetes.default.svc
+              - cluster: prod
+                url: https://kubernetes.default.svc
+          - git:
+              repoURL: https://github.com/LukasKoller/argocd-training-examples.git
+              revision: HEAD
+              directories:
+                - path: application-set/matrix-git-example/*
+  template:
+    metadata:
+      name: 'as-matrix-lkoller-{{path.basename}}-{{cluster}}'
+    spec:
+      project: default
+      source:
+        repoURL: 'https://github.com/LukasKoller/argocd-training-examples.git'
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'lkoller'
