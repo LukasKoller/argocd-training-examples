@@ -46,7 +46,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: simple-example
+    - host: simple-example.prod
       paths:
       - path: /
         backend:
